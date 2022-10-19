@@ -5,6 +5,7 @@ import util.ProductPredicate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Program {
 
@@ -15,8 +16,13 @@ public class Program {
         list.add(new Product("Mouse", 54.90 ));
         list.add(new Product("Monitor", 234.93 ));
         list.add(new Product("Xbox", 1190.99 ));
+        list.add(new Product("Keyboard", 90.99 ));
 
-        list.removeIf(Product::nonStaticProductPredicate);
+        Double min = 100.0;
+
+        Predicate<Product> pred = p -> p.getPrice() >= min;
+
+        list.removeIf(pred);
 
         for ( Product p: list){
             System.out.println(p);
